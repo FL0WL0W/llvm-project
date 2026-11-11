@@ -133,6 +133,7 @@ def BRINC          : EVXForm_1<527, (outs gprc:$RT), (ins gprc:$RA, gprc:$RB),
                                "brinc $RT, $RA, $RB", IIC_IntSimple, []>;
 
 // Double-precision floating point
+let Predicates = [HasSPE, HasSPEDouble] in {
 def EFDABS         : EFXForm_2<740, (outs sperc:$RT), (ins sperc:$RA),
                                 "efdabs $RT, $RA", IIC_FPDGeneral,
                                 [(set f64:$RT, (fabs f64:$RA))]>;
@@ -235,6 +236,8 @@ def EFDTSTLT       : EFXForm_3<765, (outs crrc:$crD), (ins sperc:$RA, sperc:$RB)
                                "efdtstlt $crD, $RA, $RB", IIC_FPDGeneral>;
 }
 
+} // HasSPEDouble
+
 // Single-precision floating point
 def EFSABS         : EFXForm_2<708, (outs spe4rc:$RT), (ins spe4rc:$RA),
                                 "efsabs $RT, $RA", IIC_FPSGeneral,
@@ -244,6 +247,7 @@ def EFSADD         : EFXForm_1<704, (outs spe4rc:$RT), (ins spe4rc:$RA, spe4rc:$
                                 "efsadd $RT, $RA, $RB", IIC_FPAddSub,
                                 [(set f32:$RT, (any_fadd f32:$RA, f32:$RB))]>;
 
+let Predicates = [HasSPE, HasSPEDouble] in
 def EFSCFD         : EFXForm_2a<719, (outs spe4rc:$RT), (ins sperc:$RB),
                                 "efscfd $RT, $RB", IIC_FPSGeneral,
                                 [(set f32:$RT, (any_fpround f64:$RB))]>;

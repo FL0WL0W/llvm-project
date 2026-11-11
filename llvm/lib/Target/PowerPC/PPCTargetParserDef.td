@@ -16,6 +16,10 @@ include "PPCFeatures.td"
 def G3Itineraries : ProcessorItineraries<[], [], []>;
 def G4Itineraries : ProcessorItineraries<[], [], []>;
 def G4PlusItineraries : ProcessorItineraries<[], [], []>;
+def E200Z3Model : SchedMachineModel;
+def E200Z4Model : SchedMachineModel;
+def E200Z6Model : SchedMachineModel;
+def E200Z7Model : SchedMachineModel;
 def G5Model : SchedMachineModel;
 def P10Model : SchedMachineModel;
 def P7Model : SchedMachineModel;

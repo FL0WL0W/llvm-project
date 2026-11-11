@@ -60,6 +60,7 @@ BigEndianNEON
 AArch64SME
 CompileCudaWithLLVM
 NVPTXUsage
+PowerPCE200
 AMDGPUUsage
 AMDGPUAsyncOperations
 AMDGPUDMAOperations
@@ -341,6 +342,10 @@ yaml2obj
 - {doc}`NVPTXUsage`
 
   This document describes using the NVPTX backend to compile GPU kernels.
+
+- {doc}`PowerPCE200`
+
+  Book E e200 CPU selection, SPE support, and scheduling models.
 
 - {doc}`AMDGPUUsage`
 

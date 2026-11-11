@@ -72,6 +72,18 @@ def : ProcessorModel<"g5", G5Model,
                    FeatureFRES, FeatureFRSQRTE,
                    Feature64BitSupport /*, Feature64BitRegs */,
                    FeatureMFTB, DeprecatedDST]>;
+def : ProcessorModel<"e200z3", E200Z3Model,
+                  [FeatureBookE, FeatureISEL, FeatureMFTB, FeatureMSYNC,
+                   FeatureSPESingle]>;
+def : ProcessorModel<"e200z4", E200Z4Model,
+                  [FeatureBookE, FeatureISEL, FeatureMFTB, FeatureMSYNC,
+                   FeatureSPESingle]>;
+def : ProcessorModel<"e200z6", E200Z6Model,
+                  [FeatureBookE, FeatureISEL, FeatureMFTB, FeatureMSYNC,
+                   FeatureSPESingle]>;
+def : ProcessorModel<"e200z7", E200Z7Model,
+                  [FeatureBookE, FeatureISEL, FeatureMFTB, FeatureMSYNC,
+                   FeatureSPESingle]>;
 def : ProcessorModel<"e500", PPCE500Model,
                   [DirectiveE500,
                    FeatureICBT, FeatureBookE,

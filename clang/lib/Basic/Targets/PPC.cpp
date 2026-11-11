@@ -629,6 +629,8 @@ void PPCTargetInfo::setFeatureEnabled(llvm::StringMap<bool> &Features,
                                       StringRef Name, bool Enabled) const {
   if (Enabled) {
     if (Name == "efpu2")
+      Features["spe-single"] = true;
+    if (Name == "efpu2" || Name == "spe-single")
       Features["spe"] = true;
     // If we're enabling any of the vsx based features then enable vsx and
     // altivec. We'll diagnose any problems later.
@@ -656,6 +658,8 @@ void PPCTargetInfo::setFeatureEnabled(llvm::StringMap<bool> &Features,
       Features[Name] = true;
   } else {
     if (Name == "spe")
+      Features["spe-single"] = Features["efpu2"] = false;
+    if (Name == "spe-single")
       Features["efpu2"] = false;
     // If we're disabling altivec, hard-float, or vsx go ahead and disable all
     // of the vsx features.

@@ -81,9 +81,13 @@ def FeatureAltivec   : SubtargetFeature<"altivec","HasAltivec", "true",
 def FeatureSPE       : SubtargetFeature<"spe","HasSPE", "true",
                                         "Enable SPE instructions",
                                         [FeatureHardFloat]>;
+// e200 implementations provide scalar/vector single precision but no EFD APU.
+def FeatureSPESingle : SubtargetFeature<"spe-single", "HasSPESingle", "true",
+                                       "Restrict SPE floating point to single precision",
+                                       [FeatureSPE]>;
 def FeatureEFPU2 : SubtargetFeature<"efpu2", "HasEFPU2", "true",
                                         "Enable Embedded Floating-Point APU 2 instructions",
-                                        [FeatureSPE]>;
+                                        [FeatureSPESingle]>;
 def FeatureMFOCRF    : SubtargetFeature<"mfocrf","HasMFOCRF", "true",
                                         "Enable the MFOCRF instruction">;
 def FeatureFSqrt     : SubtargetFeature<"fsqrt","HasFSQRT", "true",
@@ -387,6 +391,9 @@ def IsPPC4xx  : Predicate<"Subtarget->isPPC4xx()">;
 def IsPPC6xx  : Predicate<"Subtarget->isPPC6xx()">;
 def IsE500  : Predicate<"Subtarget->isE500()">;
 def HasSPE  : Predicate<"Subtarget->hasSPE()">;
+def HasSPEDouble : Predicate<"!Subtarget->hasSPESingle()">,
+                         AssemblerPredicate<(none_of FeatureSPESingle),
+                                            "double-precision SPE">;
 def HasICBT : Predicate<"Subtarget->hasICBT()">;
 def HasPartwordAtomics : Predicate<"Subtarget->hasPartwordAtomics()">;
 def HasQuadwordAtomics : Predicate<"Subtarget->hasQuadwordAtomics()">;
